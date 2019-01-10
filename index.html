@@ -26,7 +26,70 @@
 </head>
 
 <body>
-    
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4 text-center">Rock Paper Sissors! A Duel of the Ages!</h1>
+                    <p class="lead text-center" id="dispPlayer">Choose your play wisely</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="row justify-content-center mb-4">
+                    <button type="button" class="btn btn-primary btn-lg" id="p1enter">Player 1</button>
+                </div>
+                <div class="row justify-content-center">
+                    <h4 id="p1wins">P1 wins:</h4>
+                </div>
+                <div class="row justify-content-center">
+                    <h4 id="p1losses">P1 losses:</h4>
+                </div>
+                <div class="row justify-content-center">
+                    <h3>Player 1 Plays:</h3>
+                </div>
+                <div class="row justify-content-center mt-1" id="p1playimg">
+
+                </div>
+                <div class="row justify-content-center mt-2">
+                    <button type="button" class="btn btn-secondary rpsBtn1" play="r">ROCK</button>
+                    <button type="button" class="btn btn-secondary rpsBtn1 mx-2" play="p">PAPER</button>
+                    <button type="button" class="btn btn-secondary rpsBtn1" play="s">SCISSORS</button>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row justify-content-center mb-4">
+                    <button type="button" class="btn btn-danger btn-lg" id="p2enter">Player 2</button>
+                </div>
+                <div class="row justify-content-center">
+                    <h4 id="p2wins">P2 wins:</h4>
+                </div>
+                <div class="row justify-content-center">
+                    <h4 id="p2losses">P2 losses:</h4>
+                </div>
+                <div class="row justify-content-center">
+                    <h3>Player 2 Plays:</h3>
+                </div>
+                <div class="row justify-content-center mt-1" id="p2playimg">
+
+                </div>
+                <div class="row justify-content-center mt-2">
+                    <button type="button" class="btn btn-secondary rpsBtn2" play="r">ROCK</button>
+                    <button type="button" class="btn btn-secondary rpsBtn2 mx-2" play="p">PAPER</button>
+                    <button type="button" class="btn btn-secondary rpsBtn2" play="s">SCISSORS</button>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <p id="msg"></p>
+        </div>
+        <div class="row justify-content-center">
+            <button type="button" class="btn btn-warning btn-sm" id="leave">Leave Game</button>
+        </div>
+    </div>
+
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
