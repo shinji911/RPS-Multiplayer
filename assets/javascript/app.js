@@ -24,6 +24,9 @@ $(document).ready(function () {
       player2: player2
    };
 
+   let timerid;
+   let counter = 30;
+
    const msg = $("#msg");
 
    // Initialize Firebase
@@ -45,7 +48,7 @@ $(document).ready(function () {
       if (player1.playing === false && playerNo === 0) {
          player1.playing = true;
          playerNo = 1;
-         $("#dispPlayer").text("You are Player 1")
+         $("#dispPlayer").text("You are Player 1");
          setdata();
       }
    });
@@ -53,7 +56,7 @@ $(document).ready(function () {
       if (player2.playing === false && playerNo === 0) {
          player2.playing = true;
          playerNo = 2;
-         $("#dispPlayer").text("You are Player 2")
+         $("#dispPlayer").text("You are Player 2");
          setdata();
       }
    });
@@ -61,7 +64,7 @@ $(document).ready(function () {
 
    // Capture button click for player 1 selection
    $(".rpsBtn1").on("click", function () {
-      if (playerNo === 1 && player1.playSelect === "none") {
+      if (playerNo === 1 && player1.playSelect === "none" && player2.playing === true) {
          player1.playSelect = $(this).attr("play");
          setdata();
       }
@@ -69,7 +72,7 @@ $(document).ready(function () {
 
    // Capture button click for player 2 selection
    $(".rpsBtn2").on("click", function () {
-      if (playerNo === 2 && player2.playSelect === "none") {
+      if (playerNo === 2 && player2.playSelect === "none" && player1.playing == true) {
          player2.playSelect = $(this).attr("play");
          setdata();
       }
@@ -99,8 +102,8 @@ $(document).ready(function () {
       };
    });
 
-   //reset btn
-   $("#reset").on("click", function () {
+   //reset function
+   function reset() {
       playerNo = 0;
       player1 = {
          playing: false,
@@ -114,28 +117,37 @@ $(document).ready(function () {
          wins: 0,
          losses: 0,
       };
-      clearimg();
       setdata();
-   });
+      $("#dispPlayer").text("Choose your Player!");
+      msg.text("");
+   };
 
    // Firebase watcher
    dataRef.ref().on("value", function (snapshot) {
 
       // store the player object from database to local
-      console.log(snapshot.val());
       player1 = snapshot.val().player1;
       player2 = snapshot.val().player2;
+
+      //reset game if no value change detected for 30 seconds
+      clearTimeout(timerid);
+      timerid = setTimeout(function() {
+         reset();         
+      },30000)
+
 
       //display if player present
       if (player1.playing === true) {
          $("#p1enter").text("Player 1 Present");
       } else {
          $("#p1enter").text("Choose Player 1");
+         clearimg();
       };      
       if (player2.playing === true) {
          $("#p2enter").text("Player 2 Present");
       } else {
          $("#p2enter").text("Choose Player 2");
+         clearimg();
       };
 
       //display if player made selection
